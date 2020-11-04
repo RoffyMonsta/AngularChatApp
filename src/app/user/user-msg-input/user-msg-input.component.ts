@@ -143,7 +143,6 @@ export class UserMsgInputComponent implements OnInit {
      
     
     setTimeout(() => {
-      console.log('sleep');
       // And any other code that should run only after 5s
     const newUserDate: Date = new Date();
     const newNow_ts = firebase.firestore.Timestamp.fromDate(newUserDate);

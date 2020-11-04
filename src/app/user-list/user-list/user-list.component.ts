@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { tap, map, filter, switchMap, delay } from 'rxjs/operators'; 
 
 import { MatSnackBar, SimpleSnackBar, MatSnackBarRef,
   MatSnackBarDismiss} from '@angular/material/snack-bar';
@@ -13,9 +12,8 @@ import {AuthService} from "../../shared/services/auth.service";
 import * as dayjs from 'dayjs';
 import { BotInterface } from 'src/app/shared/model/user';
 import { CurrentUserService } from 'src/app/shared/services/current-user.service';
-import { NgIf } from '@angular/common';
 import { FormBuilder, FormGroup, FormGroupDirective } from '@angular/forms';
-
+import {MainContainerComponent} from '../../home/main-container/main-container.component';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -43,6 +41,7 @@ export class UserListComponent implements OnInit, OnDestroy {
     private readonly ngFireStore: AngularFirestore,
     public currentUserSrv: CurrentUserService,  
     private snackBarSrv: MatSnackBar,
+    public MainComp: MainContainerComponent
     
   ) { }
 
@@ -68,13 +67,14 @@ export class UserListComponent implements OnInit, OnDestroy {
       this.usersRef = this.ngFireStore.collection<BotInterface>(`users/${this.userUID}/bots`, 
       ref => ref.where('name','==' ,this.searchField));        
       this.currentUserList$ = this.usersRef.valueChanges({idField: 'UUID'})  
-      console.log(this.currentUserList$);
     }
 
     clearFilters(){
       this.ngOnInit();
     }
   selectUser( user: BotInterface) {
+
+    this.MainComp.setActiveClass();
     console.log('<--- SYNC ENTER UserListComponent.selectUser() user: $O', user);
     const userDoc: AngularFirestoreDocument<BotInterface> = 
     this.ngFireStore.doc(`users/${this.userUID}/bots/${user.UUID}`);
@@ -108,14 +108,11 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     this.ngFireAuth.app
     .then((app: firebase.app.App) => {      
-      // console.log('then firebase.app.App app: %O', app);
       db = app.firestore();
       const orderSeedRef = db.collection("user-order-seed").doc("order-number");
-      console.log(orderSeedRef);
       return orderSeedRef.get();
     })
     .then((doc: firebase.firestore.DocumentSnapshot) => {
-      console.log(doc.data());
       if (doc.exists) {
           console.log("THEN Document data:", doc.data());
           const user_number_obj: any = doc.data();
@@ -168,7 +165,6 @@ export class UserListComponent implements OnInit, OnDestroy {
   
     const msgID = `${day.format('YYYY')}-${day.format('MM')}-${day.format('DD')}`; 
     const msgFieldName = `${day.format('HH')}${day.format('mm')}${day.format('ss')}.${day.format('SSS')}`;
-    console.log(docRef.path);
     return db.collection(`${docRef.path}/messages`)
       .doc(msgID)
       .set({ [msgFieldName] : {

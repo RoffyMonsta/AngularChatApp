@@ -10,7 +10,6 @@ import { BotInterface, User } from 'src/app/shared/model/user';
 import { CurrentUserService } from 'src/app/shared/services/current-user.service';
 
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore'; 
-import { PageScrollService } from 'ngx-page-scroll-core';
 import * as dayjs from 'dayjs';
 @Component({
   selector: 'app-main-container',
@@ -19,6 +18,8 @@ import * as dayjs from 'dayjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainContainerComponent implements OnInit, OnDestroy {
+  public statusClass1 = 'active';
+  public statusClass2 = 'not-active';
 
   public curUser$: Observable<BotInterface|null> = null; 
   public curUser: BotInterface | null = null; 
@@ -41,25 +42,6 @@ export class MainContainerComponent implements OnInit, OnDestroy {
     public currentUserSrv: CurrentUserService,
     private snackBarSrv: MatSnackBar,
   ) { }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   ngOnInit(): void {
     
     this.userUID =  this.afs.GetUserId();
@@ -102,7 +84,12 @@ export class MainContainerComponent implements OnInit, OnDestroy {
     );   
 
   }
-  
+  setActiveClass(){
+
+    if(this.statusClass1 === 'active')this.statusClass1 =  'not-active'; else this.statusClass1 = 'active';
+    if(this.statusClass2 === 'not-active')this.statusClass2 =  'active'; else this.statusClass2 = 'not-active';
+    
+  }
   ngOnDestroy() {
     if (this.simpleSnackBarRef != null) {
       this.simpleSnackBarRef.dismiss();
