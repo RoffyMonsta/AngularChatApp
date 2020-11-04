@@ -1,0 +1,23 @@
+mat-nav-list {
+  padding-top: 0;
+}
+
+mat-nav-list a {
+  border-bottom: 1px solid #f3f3f3;
+}
+
+mat-nav-list a.active-page {
+  background: rgba(255, 64, 129, 0.6) !important;
+  color: white !important;
+}
+
+.page-email {
+  font-size: 14px;
+}
+
+.page-list-sidenav {
+  width: 220px;
+  -webkit-box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
+          box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
+}
+/*# sourceMappingURL=app.component.css.map */

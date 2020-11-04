@@ -1,0 +1,15 @@
+.example-dt {
+  height: 30px;
+  font-weight: bold;
+}
+
+.example-dd {
+  height: 30px;
+}
+
+.user-chat-container {
+  width: auto;
+  height: 75vh;
+  margin: 10px, 10px,10px, 10px;
+}
+/*# sourceMappingURL=user-chat.component.css.map */

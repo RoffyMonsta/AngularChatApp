@@ -1,0 +1,21 @@
+    mat-nav-list {
+        padding-top: 0;
+        a {
+            border-bottom: 1px solid #f3f3f3;
+            &.active-page {
+                background: rgba(#ff4081, 0.6) !important;
+                ;
+                color: white !important;
+                ;
+            }
+        }
+    }
+    
+    .page-email {
+        font-size: 14px;
+    }
+    
+    .page-list-sidenav {
+        width: 220px;
+        box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
+    }

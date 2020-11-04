@@ -1,0 +1,63 @@
+    div.container {
+        width: auto;
+    }
+    
+    .bot-user {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: stretch;
+        padding-bottom: 10%;
+    }
+    
+    .bot-pic {
+        width: 15%;
+        align-items: center;
+        align-content: center;
+    }
+    
+    .bot-pic img {
+        width: 50%;
+    }
+    
+    mat-selection-list {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    
+    mat-list-option {
+        border-bottom: 1px solid lightgrey;
+    }
+    
+    .name-and-text {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+    }
+    
+    .userNameGet {
+        font-size: 20px;
+    }
+    
+    .userTeextGet {
+        font-size: 12px;
+        opacity: 0.7;
+    }
+    
+    .userTimeGet {
+        width: 25%;
+    }
+    
+    .user-list-container {
+        width: auto;
+        background-color: white;
+    }
+    
+    button.user-list-btn {
+        display: block;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }

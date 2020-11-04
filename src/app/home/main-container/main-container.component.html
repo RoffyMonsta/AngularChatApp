@@ -1,0 +1,52 @@
+<div class="mainDiv">
+    <div class="usersBar">
+        <div class="current_header">
+            <img src="../../../assets/img/out.png" alt="User pic" (click)="afs.SignOut()">
+            <div class="userSearch">
+
+            </div>
+
+        </div>
+        <div class="chatlist">
+            <div class="list_header">
+                <mat-toolbar class="user-list-header">Chats</mat-toolbar>
+            </div>
+            <div class="user_list ">
+                <app-user-list></app-user-list>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="chatBar">
+        <ng-container *ngIf="(curUser$ | async) as cur_user; else notSelected ">
+            <ng-container *ngIf="curUserMsg$ | async | msgObjToArray: cur_user.name as msg_arr ">
+                <div class="user_header ">
+
+                    <mat-toolbar class="user-header" style="justify-content: flex-start; ">
+                        <img src="../../../assets/img/bot.png" alt="" style="width: 4%; padding: 10px; "> {{cur_user.name}}
+                    </mat-toolbar>
+                </div>
+                <div class="user_chat ">
+                    <app-user-chat [data-source]="msg_arr" [user-type]=" 'user' "></app-user-chat>
+                </div>
+                <div class="user_footer ">
+                    <app-user-msg-input [user-type]=" 'user' "></app-user-msg-input>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <ng-template #notSelected>
+            <div class="user_header ">
+                <mat-toolbar class="user-header ">Select User!</mat-toolbar>
+            </div>
+            <div class="user_chat "></div>
+            <div class="user_footer "></div>
+        </ng-template>
+    </div>
+
+
+
+
+</div>

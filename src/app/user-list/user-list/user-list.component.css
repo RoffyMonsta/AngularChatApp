@@ -1,0 +1,87 @@
+div.container {
+  width: auto;
+}
+
+.bot-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+  padding-bottom: 10%;
+}
+
+.bot-pic {
+  width: 15%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.bot-pic img {
+  width: 50%;
+}
+
+mat-selection-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+
+mat-list-option {
+  border-bottom: 1px solid lightgrey;
+}
+
+.name-and-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 70%;
+}
+
+.userNameGet {
+  font-size: 20px;
+}
+
+.userTeextGet {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.userTimeGet {
+  width: 25%;
+}
+
+.user-list-container {
+  width: auto;
+  background-color: white;
+}
+
+button.user-list-btn {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/*# sourceMappingURL=user-list.component.css.map */

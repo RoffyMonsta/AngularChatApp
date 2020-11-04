@@ -1,0 +1,22 @@
+<ng-container *ngIf="(curUser$ | async) as cur_user"></ng-container>
+<div class="footer-input">
+    <form (ngSubmit)="onUserMsgSubmit(userFG,formDirective)" [formGroup]="userFG" #formDirective="ngForm" class="msg_input">
+        <mat-form-field class="full-width" appearance="outline" floatLabel="auto">
+            <input matInput placeholder="Type your message" formControlName="user_message" required>
+
+            <mat-label>Type your message</mat-label>
+
+            <mat-error *ngIf="user_message?.hasError('required')">
+                ERROR: Message is required
+            </mat-error>
+            <mat-error *ngIf="user_message?.hasError('minlength')">
+                ERROR: Message must be at least {{user_message?.getError('minlength').requiredLength}} characters long.
+            </mat-error>
+
+
+        </mat-form-field>
+        <button mat-flat-button> 
+            <img src="../../../assets/img/arrow.PNG" alt="">
+        </button>
+    </form>
+</div>
