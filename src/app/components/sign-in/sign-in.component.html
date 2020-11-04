@@ -2,7 +2,10 @@
     <div class="displayTableCell">
 
         <div class="authBlock">
-            <h3>Sign In</h3>
+            <div class="signIn">
+                Sign In
+            </div>
+
             <div class="formGroup">
                 <input type="text" class="formControl" placeholder="Username" #userName required>
             </div>
@@ -12,21 +15,23 @@
             </div>
 
             <!-- Calling SignIn Api from AuthService -->
-            <div class="formGroup">
-                <input type="button" class="btn btnPrimary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
-            </div>
 
-            <div class="formGroup">
-                <span class="or"><span class="orInner">Or</span></span>
-            </div>
+            <div class="buttonsDiv">
+                <div class="formGroup">
+                    <input type="button" class="btn btnPrimary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
+                </div>
 
-            <!-- Calling GoogleAuth Api from AuthService -->
-            <div class="formGroup">
-                <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
+
+
+                <!-- Calling GoogleAuth Api from AuthService -->
+                <div class="formGroup">
+                    <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
             <i class="fab fa-google-plus-g"></i>
             Log in with Google
           </button>
+                </div>
             </div>
+
 
             <div class="forgotPassword">
                 <span routerLink="/forgot-password">Forgot Password?</span>
