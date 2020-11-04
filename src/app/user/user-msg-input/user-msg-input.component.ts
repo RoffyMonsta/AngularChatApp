@@ -77,7 +77,7 @@ export class UserMsgInputComponent implements OnInit {
           console.log(err);
         }
       );
-      console.log(this.joke); 
+      
     // --------------- eom ------------------------------
   }
   
@@ -98,7 +98,6 @@ export class UserMsgInputComponent implements OnInit {
 
     const userMsgDoc: AngularFirestoreDocument<{ [x: string]: { source: string; text: string; }; }> = 
             this.ngFireStore.doc(`users/${this.userUID}/bots/${this.curUser.UUID}/messages/${msgID}`);
-            console.log(this.responceBool);
     userMsgDoc.set({ [msgFieldName] : {
             source: this.user_type==='user' ?'user' : this.curUser.name,
             text: value.user_message

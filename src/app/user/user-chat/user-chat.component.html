@@ -2,9 +2,7 @@
     <mat-list>
         <mat-list-item *ngFor="let msg of messages">
             <div mat-line style="padding:10px; border-radius: 12px;" [style.text-align]="getTextAlign(msg)" [style.background-color]="getBackgroundColors(msg)" [style.color]="getColors(msg)">
-
-
-                {{msg.txt}} </div>
+                <img src="getUserImage" alt="" style="width: 10%;"> {{msg.txt}} </div>
             <div mat-line style="font-weight: lighter; font-size: smaller;" [style.text-align]="getTextAlign(msg)">{{msg.src_name}}</div>
 
         </mat-list-item>

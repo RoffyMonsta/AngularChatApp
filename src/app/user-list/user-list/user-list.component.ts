@@ -27,8 +27,10 @@ export class UserListComponent implements OnInit, OnDestroy {
   searchFG: FormGroup;
   public searchField: string = null;
   public currentUserList$: Observable<BotInterface[]> = null; 
+  public filteredCurrentUserList$: Observable<BotInterface[]> = null; 
   public curUserId: string = null; 
-  public userUID: string = this.afs.GetUserId(); 
+  public userUID: string = this.auth.GetUserId(); 
+  public usersRef: any = null;
   // --------------------------------------------------------------
   private simpleSnackBarRef: MatSnackBarRef<SimpleSnackBar> = null;
   
@@ -37,7 +39,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private readonly ngFireAuth: AngularFireAuth, 
-    public afs: AuthService,
+    public auth: AuthService,
     private readonly ngFireStore: AngularFirestore,
     public currentUserSrv: CurrentUserService,  
     private snackBarSrv: MatSnackBar,
@@ -45,20 +47,33 @@ export class UserListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    
     this.searchFG = this.fb.group({
-      user_message: ['', {
+      user_search: ['', {
         updateOn: 'change' }
       ],
     });
-    const usersRef = this.ngFireStore.collection<BotInterface>(`users/${this.userUID}/bots`, 
-                ref => ref.orderBy('user_msg')); 
-                
-    this.currentUserList$ = usersRef.valueChanges({idField: 'UUID'})  
+    
+     this.usersRef = this.ngFireStore.collection<BotInterface>(`users/${this.userUID}/bots`, 
+                ref => ref.orderBy('user_msg'));        
+    this.currentUserList$ = this.usersRef.valueChanges({idField: 'UUID'})  
+    
+    
   }
-  
   onSearchSubmit({ value, valid }: { value: any, valid: boolean }, 
-    formDirective: FormGroupDirective){console.log(value);};
- 
+    formDirective: FormGroupDirective){this.searchField = value.user_search ;this.ngOnInit(); this.search();
+    
+    };
+    search() {
+      this.usersRef = this.ngFireStore.collection<BotInterface>(`users/${this.userUID}/bots`, 
+      ref => ref.where('name','==' ,this.searchField));        
+      this.currentUserList$ = this.usersRef.valueChanges({idField: 'UUID'})  
+      console.log(this.currentUserList$);
+    }
+
+    clearFilters(){
+      this.ngOnInit();
+    }
   selectUser( user: BotInterface) {
     console.log('<--- SYNC ENTER UserListComponent.selectUser() user: $O', user);
     const userDoc: AngularFirestoreDocument<BotInterface> = 

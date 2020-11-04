@@ -2,32 +2,33 @@
     <div class="container">
         <form (ngSubmit)="onSearchSubmit(searchFG,formDirective)" [formGroup]="searchFG" #formDirective="ngForm" class="search_input">
             <mat-form-field class="full-width" appearance="outline" floatLabel="auto">
-                <input matInput placeholder="Type your message" formControlName="user_message" required>
+                <input matInput placeholder="Search or start new chat" formControlName="user_search" required>
             </mat-form-field>
-        </form>
+            <button mat-flat-button (click)="onSearchSubmit(searchFG,formDirective)" class="user-list-btn">Search</button>
+            <button mat-flat-button (click)="clearFilters()" class="user-list-btn">Clear</button>
 
-        <mat-drawer-container class="user-list-container">
-            <mat-selection-list [multiple]="false">
-                <mat-list-option *ngFor="let user of users" (click)="selectUser(user)">
-                    <div class="bot-user">
-                        <div class="bot-pic"><img src="../../../assets/img/bot.png" alt=""></div>
-                        <div class="name-and-text">
-                            <div class="userNameGet">{{ userNameGet(user) }}</div>
-                            <div class="userTextGet">Some joke</div>
+        </form>
+        <button mat-flat-button class="user-list-btn" (click)="createUser()" id="createUser"> Create </button>
+
+        <mat-drawer-container class=" user-list-container ">
+            <mat-selection-list [multiple]="false ">
+                <mat-list-option *ngFor="let user of users " (click)="selectUser(user) ">
+                    <div class="bot-user ">
+                        <div class="bot-pic "><img src="../../../assets/img/bot.png " alt=" "></div>
+                        <div class="name-and-text ">
+                            <div class="userNameGet ">{{ userNameGet(user) }}</div>
+                            <div class="userTextGet ">Some joke</div>
                         </div>
 
-                        <div class="userTimeGet">{{ userTimeGet(user) }}</div>
+                        <div class="userTimeGet ">{{ userTimeGet(user) }}</div>
                     </div>
 
                 </mat-list-option>
-                <mat-list-option *ngIf="users.length === 0">
+                <mat-list-option *ngIf="users.length===0 ">
                     <span>User List is empty!</span>
                 </mat-list-option>
             </mat-selection-list>
         </mat-drawer-container>
 
-        <button mat-flat-button color="primary" class="user-list-btn" (click)="createUser()">
-          Create User
-        </button>
     </div>
 </ng-container>
