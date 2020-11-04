@@ -25,13 +25,7 @@ export class UserChatComponent implements OnInit {
       return (msg.src==='user')?'left':'right';
     }
   }
-  getUserImage(msg: {id: string; src: string; src_name: string; txt: string}) {
-    if (this.user_type==='user') {
-      return (msg.src==='user')?'../../../assets/img/user.png':'../../../assets/img/bot.png';
-    } else {
-      return (msg.src==='user')?'../../../assets/img/bot.png':'../../../assets/img/user.png';
-    }
-  }
+
   getBackgroundColors(msg: {id: string; src: string; src_name: string; txt: string}) {
     if (this.user_type==='user') {
       return (msg.src==='user')?'#f5f5f5':'#3c4252';
