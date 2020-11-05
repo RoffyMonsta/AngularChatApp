@@ -6,16 +6,16 @@
 
             </div>
 
-        <div class="chatlist">
-            <div class="list_header">
-                <mat-toolbar class="user-list-header">Chats</mat-toolbar>
+            <div class="chatlist">
+                <div class="list_header">
+                    <mat-toolbar class="user-list-header">Chats</mat-toolbar>
+                </div>
+                <div class="user_list ">
+                    <app-user-list></app-user-list>
+                </div>
             </div>
-            <div class="user_list ">
-                <app-user-list></app-user-list>
-            </div>
+
         </div>
-
-
     </div>
 
     <div class="chatBar" [ngClass]="statusClass2">
